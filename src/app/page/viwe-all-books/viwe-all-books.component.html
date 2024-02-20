@@ -1,0 +1,25 @@
+
+<div class="table-responsive small container">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">ISBM</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Category</th>
+        <th scope="col">QTY</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of bookList">
+        <td>#BN{{book.id}}</td>
+        <td>{{book.isbn}}</td>
+        <td>{{book.title}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.category}}</td>
+        <td>{{book.qty}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
