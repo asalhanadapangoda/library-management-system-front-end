@@ -25,4 +25,11 @@ export class ViweAllBooksComponent implements OnInit {
       console.log(this.bookList);
     })
   }
+  deleteBook(book:any){
+    this.http.delete(`http://localhost:8080/book/${book.id}`,{responseType:'text'}).subscribe((response:string)=>{
+      console.log(response);
+      this.loadBooks();
+      
+    })
+  }
 }
