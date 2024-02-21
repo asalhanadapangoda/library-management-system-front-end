@@ -29,7 +29,7 @@ export class ViweAllBooksComponent implements OnInit {
     this.http.delete(`http://localhost:8080/book/${book.id}`,{responseType:'text'}).subscribe((response:string)=>{
       console.log(response);
       this.loadBooks();
-      
+      alert("Deleted"+book.title)
     })
   }
 }
