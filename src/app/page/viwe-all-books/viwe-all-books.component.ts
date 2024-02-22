@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient,HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
+
 @Component({
   selector: 'app-viwe-all-books',
   standalone: true,
@@ -12,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class ViweAllBooksComponent implements OnInit {
   private http;
   public bookList:any ={};
+  public selectedBook :any;
 
   constructor(private httpCliant:HttpClient){
     this.http=httpCliant;
@@ -25,11 +28,24 @@ export class ViweAllBooksComponent implements OnInit {
       console.log(this.bookList);
     })
   }
-  deleteBook(book:any){
-    this.http.delete(`http://localhost:8080/book/${book.id}`,{responseType:'text'}).subscribe((response:string)=>{
+  deleteBook(){
+    this.http.delete(`http://localhost:8080/book/${this.selectedBook.id}`,{responseType:'text'}).subscribe((response:string)=>{
       console.log(response);
       this.loadBooks();
-      alert("Deleted"+book.title)
+      this.selectedBook=null;
+    })
+  }
+
+  setSelectedBook(book:any){
+    this.selectedBook=book;
+  }
+
+  saveBook(){
+    let postApi = "http://localhost:8080/book/add";
+    this.http.post(postApi,this.selectedBook).subscribe(data=>{
+      console.log("Saved");
+      this.loadBooks();
+      this.selectedBook=null;
     })
   }
 }
