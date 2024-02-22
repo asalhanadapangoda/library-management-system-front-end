@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { APP_BOOTSTRAP_LISTENER, Component, OnInit } from '@angular/core';
 import { HttpClient,HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -33,6 +33,7 @@ export class ViweAllBooksComponent implements OnInit {
       console.log(response);
       this.loadBooks();
       this.selectedBook=null;
+      alert("Deleted");
     })
   }
 
@@ -46,6 +47,7 @@ export class ViweAllBooksComponent implements OnInit {
       console.log("Saved");
       this.loadBooks();
       this.selectedBook=null;
+      alert("Updated");
     })
   }
 }
