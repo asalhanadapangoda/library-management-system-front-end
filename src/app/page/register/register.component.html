@@ -6,7 +6,7 @@
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="firstName" class="form-label">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" [(ngModel)]="userObj.firstName" [ngModelOptions]="{standalone:true}" required>
               <div class="invalid-feedback">
                 Valid first name is required.
               </div>
@@ -14,7 +14,7 @@
 
             <div class="col-sm-6">
               <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="" [(ngModel)]="userObj.lastName" [ngModelOptions]="{standalone:true}" required>
               <div class="invalid-feedback">
                 Valid last name is required.
               </div>
@@ -22,7 +22,7 @@
 
             <div class="col-12">
                 <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
-                <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                <input type="email" class="form-control" id="email" placeholder="you@example.com" [(ngModel)]="userObj.email" [ngModelOptions]="{standalone:true}" >
                 <div class="invalid-feedback">
                   Please enter a valid email address for shipping updates.
                 </div>
@@ -30,7 +30,7 @@
 
             <div class="col-12">
               <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Username" required>
+                <input type="text" class="form-control" id="username" placeholder="Username" [(ngModel)]="userObj.userName" [ngModelOptions]="{standalone:true}"  required>
               <div class="invalid-feedback">
                   Your username is required.
                 </div>
@@ -38,7 +38,7 @@
 
             <div class="col-12">
               <label for="address" class="form-label">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+              <input type="text" class="form-control" id="address" placeholder="1234 Main St" [(ngModel)]="userObj.address" [ngModelOptions]="{standalone:true}"  required>
               <div class="invalid-feedback">
                 Please enter your shipping address.
               </div>
@@ -46,14 +46,14 @@
 
             <div class="col-12">
               <label for="address2" class="form-label">Address 2 <span class="text-body-secondary">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" [(ngModel)]="userObj.address2" [ngModelOptions]="{standalone:true}" >
             </div>
 
             <div class="col-md-5">
               <label for="country" class="form-label">Country</label>
               <select class="form-select" id="country" required *ngIf="countryList">
                 <option value="">Choose...</option>
-                <option *ngFor="let country of countryList" [value]="country.name.common" (click)="setSlectedCountry(country)">{{country.flag}}&nbsp;{{country.name.common}}</option>
+                <option *ngFor="let country of countryList" [value]="country.name.common" (click)="setSlectedCountry(country  )">{{country.flag}}&nbsp;{{country.name.common}} </option>
               </select>
               <div class="invalid-feedback">
                 Please select a valid country.
@@ -63,7 +63,7 @@
 
             <div class="col-md-5">
               <label for="zip" class="form-label">Phone Number</label>
-              <input type="text" class="form-control" [(ngModel)]="selectedCountry?.idd.root" [ngModelOptions]="{standalone:true}" id="zip" placeholder="" required>
+              <input type="text" class="form-control" [(ngModel)]="selectedCountryCode" [ngModelOptions]="{standalone:true}" [(ngModel)]="userObj.phoneNumber" id="zip" placeholder="" required>
               <div class="invalid-feedback">
                 PhoneNumber
               </div>
@@ -72,7 +72,7 @@
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Sign-up</button>
+          <button class="w-100 btn btn-primary btn-lg" type="submit" (click)="submitFrom()">Sign-up</button>
         </form>
       </div>
     </div>
