@@ -16,6 +16,13 @@ export class ViweAllBooksComponent implements OnInit {
   private http;
   public bookList:any ={};
   public selectedBook :any;
+  public newBook:any={
+    "isbn":null,
+    "title":null,
+    "author":null,
+    "category":null,
+    "qty":null
+  }
 
   constructor(private httpCliant:HttpClient){
     this.http=httpCliant;
@@ -49,6 +56,14 @@ export class ViweAllBooksComponent implements OnInit {
       this.loadBooks();
       this.selectedBook=null;
       alert("Updated");
+    })
+  }
+
+  addBook(){
+    let postApi = "http://localhost:8080/book/add";
+    this.http.post(postApi,this.newBook).subscribe(data=>{
+      console.log("Saved");
+      this.loadBooks();
     })
   }
 }
