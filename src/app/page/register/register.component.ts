@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient,HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +29,7 @@ public userObj={
  phoneNumber:null
 }
 
-constructor(private httpCliant:HttpClient){
+constructor(private httpCliant:HttpClient,public router: Router){
   this.http=httpCliant;
 }
   ngOnInit(): void {
@@ -48,7 +49,7 @@ this.selectedCountryCode=country.idd.root+""+country.idd.suffixes[0];
 }
 submitFrom(){
  console.log(this.userObj);
- this.http.get(`http://localhost:8080/user/is-Exists-User/${this.userObj.userName}`).subscribe(data=>{
+ this.http.get(`http://localhost:8081/user/is-Exists-User/${this.userObj.userName}`).subscribe(data=>{
   console.log(data);
   this.isExistUser=data;
   this.registerUser(this.isExistUser)
@@ -56,9 +57,9 @@ submitFrom(){
 }
 registerUser(isExistUser:any){
 if(!isExistUser==true){
-  this.http.post("http://localhost:8080/user/add-user",this.userObj).subscribe(data=>{
+  this.http.post("http://localhost:8081/user/add-user",this.userObj).subscribe(data=>{
     alert(this.userObj.userName + " has been registered!");
-
+  this.router.navigate(['/login'])  
   })
 }else{
   alert(this.userObj.userName + " has been already taken !");
