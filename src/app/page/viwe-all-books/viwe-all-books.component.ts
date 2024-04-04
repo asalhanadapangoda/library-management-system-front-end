@@ -2,14 +2,15 @@ import { APP_BOOTSTRAP_LISTENER, Component, OnInit } from '@angular/core';
 import { HttpClient,HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavComponent } from "../../common/nav/nav.component";
 
 
 @Component({
-  selector: 'app-viwe-all-books',
-  standalone: true,
-  imports: [HttpClientModule,FormsModule,CommonModule],
-  templateUrl: './viwe-all-books.component.html',
-  styleUrl: './viwe-all-books.component.css'
+    selector: 'app-viwe-all-books',
+    standalone: true,
+    templateUrl: './viwe-all-books.component.html',
+    styleUrl: './viwe-all-books.component.css',
+    imports: [HttpClientModule, FormsModule, CommonModule, NavComponent]
 })
 export class ViweAllBooksComponent implements OnInit {
   private http;

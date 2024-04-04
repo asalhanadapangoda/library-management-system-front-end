@@ -1,0 +1,134 @@
+<app-nav></app-nav>
+
+<table class="table table-bordered table-striped" *ngIf="userList" >
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Address 2</th>
+        <th scope="col">Country</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone Number</th>
+      </tr>
+    </thead>
+    <tbody  class="table-group-divider">
+      <tr *ngFor="let user of userList">
+        <th>#User{{user.id}}</th>
+        <th>{{user.userName}}</th>
+        <td>{{user.firstName+" "+user.lastName}}</td>
+        <td>{{user.address}}</td>
+        <td>{{user.address2}}</td>
+        <th>{{user.country}}</th>
+        <th>{{user.email}}</th>
+        <th>{{user.phoneNumber}}</th>
+        <td><button class="btn btn-outline-danger" (click)="setSelectedUser(user)" data-bs-toggle="modal" data-bs-target="#deleteModal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash2-fill" viewBox="0 0 16 16">
+            <path d="M2.037 3.225A.7.7 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2a.7.7 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671zm9.89-.69C10.966 2.214 9.578 2 8 2c-1.58 0-2.968.215-3.926.534-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466-.18-.14-.498-.307-.975-.466z"/>
+          </svg></button></td>
+          <td><button class="btn btn-outline-primary" (click)="setSelectedUser(user)" data-bs-toggle="modal" data-bs-target="#updataModal" data-bs-whatever="@getbootstrap"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+          </svg></button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!--Delete Modal -->
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure to delete this User?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="mb-3">
+        <input type="text" value={{selectedUser?.userName}} disabled class="form-control" id="recipient-name">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="deleteUser()" class="btn btn-outline-danger" data-bs-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Upadate Modal -->
+
+<div class="modal fade" id="updataModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Updata User Data</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Id</label>
+            <input type="number" [(ngModel)]="selectedUser.id" [ngModelOptions]="{standalone:true}" disabled class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">First Name</label>
+            <input type="text" [(ngModel)]="selectedUser.firstName" [ngModelOptions]="{standalone:true}" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Last Name</label>
+            <input type="text" [(ngModel)]="selectedUser.lastName" [ngModelOptions]="{standalone:true}" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">User Name</label>
+            <input type="text" [(ngModel)]="selectedUser.userName" [ngModelOptions]="{standalone:true}" disabled class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Address</label>
+            <input type="text" [(ngModel)]="selectedUser.address" [ngModelOptions]="{standalone:true}" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Address 2</label>
+            <input type="text" [(ngModel)]="selectedUser.address2" [ngModelOptions]="{standalone:true}" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Country</label>
+            <input type="text" [(ngModel)]="selectedUser.country" [ngModelOptions]="{standalone:true}" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Phone Number</label>
+            <input type="text" [(ngModel)]="selectedUser.phoneNumber" [ngModelOptions]="{standalone:true}" class="form-control" id="recipient-name">
+          </div>
+
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#Confromupdata">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- ConfromUpdata -->
+
+<div class="modal fade" id="Confromupdata" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Confromation Updata</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        If you want updata "{{selectedUser.userName}}" this user.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveUser()" data-bs-dismiss="modal">Confrom Updata</button>
+      </div>
+    </div>
+  </div>
+</div>
+
