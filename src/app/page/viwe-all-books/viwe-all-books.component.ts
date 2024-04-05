@@ -71,9 +71,14 @@ export class ViweAllBooksComponent implements OnInit {
 
   searchBook(){
     this.http.get(`http://localhost:8080/book/search/${this.fineBook.id}`).subscribe((data)=>{
+    if(data!=null){
       this.fineBook=data;
       console.log(this.newBook);
       this.fineBook.id=null;
+    }else{
+      alert("Invalied Book Id Number");
+    } 
+    
     })
   }
 }
