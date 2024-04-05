@@ -23,6 +23,8 @@ export class ViweAllBooksComponent implements OnInit {
     "category":null,
     "qty":null
   }
+  public fineBook:any={};
+
 
   constructor(private httpCliant:HttpClient){
     this.http=httpCliant;
@@ -64,6 +66,14 @@ export class ViweAllBooksComponent implements OnInit {
     this.http.post(postApi,this.newBook).subscribe(data=>{
       console.log("Saved");
       this.loadBooks();
+    })
+  }
+
+  searchBook(){
+    this.http.get(`http://localhost:8080/book/search/${this.fineBook.id}`).subscribe((data)=>{
+      this.fineBook=data;
+      console.log(this.newBook);
+      this.fineBook.id=null;
     })
   }
 }

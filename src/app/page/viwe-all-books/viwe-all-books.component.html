@@ -3,9 +3,9 @@
 <nav class="navbar navbar-light bg-blur ">
   <form class="form-inline">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon1">
       <div class="input-group-prepend">
-        <button type="button" class="btn btn-outline-primary" id="basic-addon1">
+        <button type="button" class="btn btn-outline-primary" id="basic-addon1" data-bs-toggle="modal" data-bs-target="#searchModal1">
+          Search Book  
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
           </svg>
@@ -199,3 +199,71 @@
   </div>
 </div>
 
+<!--searchbook-->
+
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">You Searched Book Data</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">ISBN</label>
+            <input type="text"  [(ngModel)]="fineBook.isbn" [ngModelOptions]="{standalone:true}" disabled class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Title</label>
+            <input type="text"  [(ngModel)]="fineBook.title" [ngModelOptions]="{standalone:true}" disabled class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Author</label>
+            <input type="text"  [(ngModel)]="fineBook.author" [ngModelOptions]="{standalone:true}" disabled class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Category</label>
+            <input type="text"  [(ngModel)]="fineBook.category" [ngModelOptions]="{standalone:true}" disabled class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Qty</label>
+            <input type="number" [(ngModel)]="fineBook.qty" [ngModelOptions]="{standalone:true}" disabled class="form-control" id="recipient-name">
+          </div>
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!--get Id book-->
+
+<div class="modal fade" id="searchModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Please Enter Book Id</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Id</label>
+            <input type="text"  [(ngModel)]="fineBook.id" [ngModelOptions]="{standalone:true}"  class="form-control" id="recipient-name">
+          </div>
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="searchBook()" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#searchModal">Search Book</button>
+      </div>
+    </div>
+  </div>
+</div>
