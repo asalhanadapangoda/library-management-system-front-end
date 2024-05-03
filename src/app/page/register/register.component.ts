@@ -23,6 +23,7 @@ public userObj={
  lastName:null,
  userName:null,
  email:null,
+ password:null,
  address:null,
  address2:null,
  country:null,

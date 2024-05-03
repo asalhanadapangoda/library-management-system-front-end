@@ -40,6 +40,14 @@
             </div>
 
             <div class="col-12">
+              <label for="password" class="form-label">Password</label>
+                <input type="text" class="form-control" id="password" placeholder="Password" [(ngModel)]="userObj.password" [ngModelOptions]="{standalone:true}"  required>
+              <div class="invalid-feedback">
+                  Your password is required.
+                </div>
+            </div>
+
+            <div class="col-12">
               <label for="address" class="form-label">Address</label>
               <input type="text" class="form-control" id="address" placeholder="1234 Main St" [(ngModel)]="userObj.address" [ngModelOptions]="{standalone:true}"  required>
               <div class="invalid-feedback">
